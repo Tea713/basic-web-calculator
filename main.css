@@ -1,0 +1,30 @@
+body {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+#frame {
+    background-color: dimgray;
+    border-radius: 12px;
+    height: 720px;
+    width: 480px;
+}
+
+#display {
+    background-color: grey;
+    flex: 1 1 480px;
+    height: 120px;
+    border-radius: 6px;
+}
+
+#interface {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+button {
+    flex: 1 1 120px;
+    height: 120px;
+}
