@@ -16,7 +16,7 @@ body {
   border-radius: 12px;
   height: 720px;
   width: 480px;
-  border: 8px solid dimgray;
+  border: 8px solid black;
 }
 
 #display {
@@ -27,8 +27,8 @@ body {
   display: flex;
   justify-content: end;
   align-items: center;
-  color: azure;
-  font-size: 75px;
+  color: white;
+  font-size: 60px;
 }
 
 #interface {
@@ -39,9 +39,20 @@ body {
 button {
   flex: 1 1 120px;
   height: 120px;
-  font-size: 30px;
+  font-size: 40px;
+  border: 2px solid black;
 }
 
 button[data-key="0"] {
   flex-basis: 240px;
+}
+
+.number {
+  background-color: dimgray;
+  color: white;
+}
+
+.operator {
+  background-color: orange;
+  color: white;
 }

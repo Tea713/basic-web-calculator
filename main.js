@@ -99,7 +99,7 @@ function interfacing(event) {
       if(display.textContent.length > 9) {
         return;
       }
-      display.textContent = ((display.textContent === "0" || (operator !== "" && y === "")) ? "" : display.textContent) + target.dataset.key;
+      display.textContent = ((display.textContent === "0" || display.textContent === "ERROR" || display.textContent === "NaN" || (operator !== "" && y === "")) ? "" : display.textContent) + target.dataset.key;
       if(operator === "") {
         x = display.textContent;
       } else {
