@@ -6,7 +6,7 @@ function reset() {
   x = "0";
   y = "";
   operator = "";
-  display.textContent = 0;
+  display.textContent = x;
   frac = false;
 }
 
@@ -49,8 +49,13 @@ function interfacing(event) {
       reset();
       break;
     case "+/-":
-      if(display.textContent[0] == "-") {
-
+      if(display.textContent == "0"){
+        break;
+      }
+      else if(display.textContent[0] == "-") {
+        display.textContent = display.textContent.substring(1);
+      } else {
+        display.textContent = "-" + display.textContent;
       }
       break;
     case "+":
