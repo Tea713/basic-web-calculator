@@ -1,22 +1,18 @@
-let x, y, operator, frac, toY;
+let x, y, operator, frac;
 
 display = document.querySelector("#display");
 
 function reset() {
-  x = 0;
-  y = null;
+  x = "0";
+  y = "";
   operator = "";
   display.textContent = 0;
   frac = false;
-  toY = false;
 }
 
 reset();
 
 function operate(operation, x, y) {
-  // if (typeof x != "number" || typeof y != "number") {
-  //     return "ERROR";
-  // }
   switch (operation) {
     case "+":
       return x + y;
@@ -33,15 +29,14 @@ function operate(operation, x, y) {
 }
 
 function calculateAndDisplay() {
-  if (operator === "" || y === null) {
+  if (operator === "" || y === "") {
     return;
   }
-  display.textContent = operate(operator, x, y).toFixed(7);
-  x = parseFloat(display.textContent);
+  display.textContent = parseFloat(operate(operator, parseFloat(x), parseFloat(y)).toFixed(7));
+  x = display.textContent;
   operator = "";
-  y = null;
+  y = "";
   frac = false;
-  toY = false;
 }
 
 function interfacing(event) {
@@ -53,17 +48,19 @@ function interfacing(event) {
     case "Backspace":
       reset();
       break;
+    case "+/-":
+      if(display.textContent[0] == "-") {
+
+      }
+      break;
     case "+":
     case "-":
     case "x":
     case "/":
-      if (operator !== "" && !toY) {
-        y = parseFloat(display.textContent);
+      if (y !== "") {
         calculateAndDisplay();
         frac = false;
       } else {
-        x = parseFloat(display.textContent);
-        toY = true;
         frac = false;
       }
       operator = target.dataset.key;
@@ -74,10 +71,11 @@ function interfacing(event) {
       frac = false;
       break;
     case "%":
-      if (y !== null) {
-        y = y / 100;
+      display.textContent = parseFloat(display.textContent) / 100;
+      if(operator === "") {
+        x = display.textContent;
       } else {
-        x = x / 100;
+        y = display.textContent;
       }
       frac = true;
       break;
@@ -85,14 +83,22 @@ function interfacing(event) {
       if (!frac) {
         display.textContent += ".";
         frac = true;
+        if(operator === "") {
+          x = display.textContent;
+        } else {
+          y = display.textContent;
+        }
       }
       break;
     default:
-      if (display.textContent === "0" || toY) {
-        display.textContent = target.dataset.key;
-        toY = false;
+      if(display.textContent.length > 9) {
+        return;
+      }
+      display.textContent = ((display.textContent === "0" || (operator !== "" && y === "")) ? "" : display.textContent) + target.dataset.key;
+      if(operator === "") {
+        x = display.textContent;
       } else {
-        display.textContent += target.dataset.key;
+        y = display.textContent;
       }
   }
 }
